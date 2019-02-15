@@ -7,6 +7,7 @@ class CarsList extends Component {
   render() {
     return(
       <div className="cars-list">
+        <div className="garage-name"><h1>{this.props.garage}</h1></div>
         {this.props.cars.map(car => <Car car={car} />)}
       </div>
     );
