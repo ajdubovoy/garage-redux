@@ -15,9 +15,8 @@ class CarsNew {
   }
 
   onSubmit = (values) => {
-    this.props.createCar(values, (car) => {
-      this.props.history.push('/'); // Navigate after submit
-      return car;
+    this.props.addCar(values, () => {
+      this.props.history.push('/');
     });
   }
 
@@ -51,6 +50,8 @@ class CarsNew {
   }
 }
 
-export default reduxForm({ form: 'newCarForm' })(
-  conect(null, { createCar })(CarsNew)
+export default reduxForm({
+  form: 'newCarForm' // a unique identifier
+})(
+  connect(null, { createCar })(CarsNew)
 );
