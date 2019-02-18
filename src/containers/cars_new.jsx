@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { createCar } from '../action';
+import { createCar } from '../actions';
 
 class CarsNew {
   renderField(field) {
@@ -14,6 +14,12 @@ class CarsNew {
     );
   }
 
+  onSubmit = (values) => {
+    this.props.createCar(values, (car) => {
+      this.props.history.push('/'); // Navigate after submit
+      return car;
+    });
+  }
 
   render() {
     <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -46,5 +52,5 @@ class CarsNew {
 }
 
 export default reduxForm({ form: 'newCarForm' })(
-  conect(cull, { createCar })(CarsNew)
+  conect(null, { createCar })(CarsNew)
 );
